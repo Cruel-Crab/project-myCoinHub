@@ -1,0 +1,43 @@
+<div class="container">
+<!--  <div class="row m-2">-->
+<!--    <div class="">-->
+<!--      <h3 class="d-inline-flex">Filter by tags: </h3>-->
+<!--      <ul class="nav nav-pills d-inline-flex">-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active" aria-current="page" href="#">All</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item" *ngFor="let i of tags">-->
+<!--          <a class="nav-link" href="#">{{i}}</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3 d-flex align-items-stretch"
+         *ngFor="let item of responseJson | paginate : { itemsPerPage: 10, currentPage: p, totalItems: totalCount }">
+      <div class="card m-1">
+        <div class="card-body" routerLink="/coin-details/{{item.id}}">
+          <img
+            src="https://economictimes.indiatimes.com/thumb/msid-81410873,width-4608,height-3072,resizemode-4,imgsize-2297149/bitcoin-ewan-kennedy-unsplash.jpg?from=mdr"
+            alt="CryptoCurrency">
+          <h3 class="card-title text-capitalize">Name: <span class="text-danger fw-bold">{{item.name}}</span></h3>
+          <h4 class="card-subtitle mb-2 text-muted">Symbol: <span class="text-danger fw-bold">{{item.symbol}}</span>
+          </h4>
+          <p class="card-text">Price: <span class="text-primary fw-bold">{{item.price}}</span></p>
+          <div class="d-flex flex-wrap align-items-center justify-content-center" *ngIf="item.tags != ''">
+            Tags:
+            <div class="" *ngFor="let tag of item.tags">
+              <!--              <p class="card-link"> {{tag}} </p>-->
+              <ul class="nav nav-pills">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">{{tag}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
