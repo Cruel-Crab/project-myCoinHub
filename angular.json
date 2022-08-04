@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "SupermindAssignmentApp"
+  "defaultProject": "SupermindAssignmentApp",
+  "cli": {
+    "analytics": false
+  }
 }
